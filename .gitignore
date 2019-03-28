@@ -1,0 +1,33 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+
+# Maven #
+.mvn
+/target/
+voter/target
+VoterAngular/node_modules
+/voter/target/
+/VoterAngular/node_modules/
+/voter/target
+/VoterAngular/node_modules
+/VoterAngular/src/node
+mvnw
+mvnw.cmd
+
+# Angular #
