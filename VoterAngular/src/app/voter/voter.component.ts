@@ -1,6 +1,7 @@
 import { Injectable} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {CookieService} from "ngx-cookie-service";
 
 let voteYesCount = 0;
 let voteNoCount = 0;
@@ -14,7 +15,7 @@ let voteNoCount = 0;
 @Injectable()
 export class VoterComponent implements OnInit {
   private votes: number;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private cs: CookieService) {
     this.votes = 0;
   }
 
@@ -22,17 +23,29 @@ export class VoterComponent implements OnInit {
   }
 
   selectYes() {
-    console.log('YES');
-    this.httpClient.get('/vote/yes').toPromise();
-    voteYesCount++;
-    this.votes++;
+    if(!this.cs.check('vote')){
+      console.log('YES');
+      this.httpClient.get('/vote/yes').toPromise();
+      this.cs.set('vote', 'voted', 1)
+      voteYesCount++;
+      this.votes++;
+    }else{
+      console.log('Already voted')
+    }
+
   }
 
   selectNo() {
-    console.log('NO');
-    this.httpClient.get('/vote/no').toPromise();
-    voteNoCount++;
-    this.votes++;
+    if(!this.cs.check('vote')){
+      console.log('NO');
+      this.httpClient.get('/vote/no').toPromise();
+      this.cs.set('vote', 'voted')
+      voteNoCount++;
+      this.votes++;
+    }else{
+      console.log('Already voted')
+    }
+
   }
 
 }
