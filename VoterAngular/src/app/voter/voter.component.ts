@@ -23,10 +23,10 @@ export class VoterComponent implements OnInit {
   }
 
   selectYes() {
-    if(!this.cs.check('vote')){
+    if(localStorage.getItem('vote')==null){
       console.log('YES');
       this.httpClient.get('/vote/yes').toPromise();
-      this.cs.set('vote', 'voted', 1)
+      localStorage.setItem('vote', 'voted');
       voteYesCount++;
       this.votes++;
     }else{
@@ -36,10 +36,10 @@ export class VoterComponent implements OnInit {
   }
 
   selectNo() {
-    if(!this.cs.check('vote')){
+    if(localStorage.getItem('vote')==null){
       console.log('NO');
       this.httpClient.get('/vote/no').toPromise();
-      this.cs.set('vote', 'voted')
+      localStorage.setItem('vote', 'voted');
       voteNoCount++;
       this.votes++;
     }else{
