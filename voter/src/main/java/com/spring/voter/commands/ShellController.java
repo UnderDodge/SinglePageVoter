@@ -2,6 +2,7 @@ package com.spring.voter.commands;
 
 import com.spring.voter.domain.VoterService;
 import com.spring.voter.domain.VoterServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
