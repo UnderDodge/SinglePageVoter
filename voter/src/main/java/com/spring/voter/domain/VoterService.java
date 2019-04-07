@@ -8,4 +8,12 @@ public interface VoterService {
     void addYes();
     void addNo();
 
+    String getName();
+    void setName(String name);
+
+    public Integer getVoteYes();
+    public Integer getVoteNo();
+
+
+
 }

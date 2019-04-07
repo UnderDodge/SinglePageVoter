@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class VoteController {
@@ -21,6 +22,13 @@ public class VoteController {
     public void voteNo() {
         shell.no();
     }
+
+    @RequestMapping(value = "vote/name" , method = RequestMethod.GET)
+    public @ResponseBody String voteName() {
+        return shell.getName();
+    }
+
+
 
 
 }
