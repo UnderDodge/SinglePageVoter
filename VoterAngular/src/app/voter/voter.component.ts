@@ -15,11 +15,34 @@ let voteNoCount = 0;
 @Injectable()
 export class VoterComponent implements OnInit {
   private votes: number;
+  private name: string;
+  private newName: string;
   constructor(private httpClient: HttpClient, private cs: CookieService) {
     this.votes = 0;
+    this.name = 'Loading...';
+    this.newName = '';
   }
 
   ngOnInit() {
+    //this.httpClient.get('/vote/name', {responseType: 'text'}).toPromise().then(value => this.name = value);
+    setTimeout((function (scope) {
+        return function () {
+          scope.httpClient.get('/vote/name', {responseType: 'text'}).toPromise().then(value => scope.newName = value);
+          console.log('Changed voting')
+        }})(this)
+      ,1000);
+
+    setInterval((function (scope) {
+      return function () {
+        scope.httpClient.get('/vote/name', {responseType: 'text'}).toPromise().then(value => scope.newName = value);
+        if(scope.name != scope.newName) {
+          scope.name = scope.newName;
+          localStorage.removeItem('vote');
+          console.log('Changed voting')
+        }
+      }})(this)
+    ,2000);
+
   }
 
   selectYes() {

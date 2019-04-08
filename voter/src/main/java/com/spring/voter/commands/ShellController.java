@@ -44,22 +44,34 @@ public class ShellController {
 
     @ShellMethod("results")
     public void results(){
-        voterService.toStringResults();
+        if(voterService!=null){
+            voterService.toStringResults();
+        }else{
+            System.out.println("There is no voting");
+        }
     }
 
     @ShellMethod("reset")
     public void reset(){
-        voterService.resetVotes();
+        if(voterService!=null){
+            voterService.resetVotes();
+        }else{
+            System.out.println("There is no voting");
+        }
     }
 
     @ShellMethod("yes")
     public void yes(){
-        voterService.addYes();
+        if(voterService!=null) {
+            voterService.addYes();
+        }
     }
 
     @ShellMethod("no")
     public void no(){
-        voterService.addNo();
+        if(voterService!=null){
+            voterService.addNo();
+        }
     }
 
 
