@@ -24,11 +24,13 @@ export class VoterComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.httpClient.get('/vote/name', {responseType: 'text'}).toPromise().then(value => this.name = value);
+    
     setTimeout((function (scope) {
         return function () {
-          scope.httpClient.get('/vote/name', {responseType: 'text'}).toPromise().then(value => scope.newName = value);
-          console.log('Changed voting')
+          scope.httpClient.get('/vote/name', {responseType: 'text'}).toPromise()
+            .then(value => scope.name = value)
+            .then(value => scope.newName = value);
+          console.log('Timeout change')
         }})(this)
       ,1000);
 
